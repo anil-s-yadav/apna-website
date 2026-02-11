@@ -20,11 +20,10 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter basename="/apna-website">
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Index />} />
-            <Route path="/apna-website/" element={<Index />} />
             <Route path="/templates" element={<Templates />} />
             <Route path="/create" element={<CreateWebsite />} />
             <Route path="/pricing" element={<Pricing />} />
