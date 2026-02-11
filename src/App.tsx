@@ -24,6 +24,7 @@ const App = () => (
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Index />} />
+            <Route path="/apna-website/" element={<Index />} />
             <Route path="/templates" element={<Templates />} />
             <Route path="/create" element={<CreateWebsite />} />
             <Route path="/pricing" element={<Pricing />} />
