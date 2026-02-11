@@ -12,4 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
-Sitemap: https://yourdomain.com/sitemap.xml
+
+Sitemap: https://anil-s-yadav.github.io/apna-website/sitemap.xml
