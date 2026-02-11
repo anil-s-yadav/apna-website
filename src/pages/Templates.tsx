@@ -7,7 +7,10 @@ import { templates, categories } from "@/data/templates";
 const Templates = () => {
   const [active, setActive] = useState<string>("All");
 
-  const filtered = active === "All" ? templates : templates.filter((t) => t.category === active);
+  const filtered =
+    active === "All"
+      ? templates
+      : templates.filter((t) => t.category === active);
 
   return (
     <section className="py-16">
@@ -69,6 +72,30 @@ const Templates = () => {
           ))}
         </div>
       </div>
+      <section className="max-w-6xl mx-auto px-4 py-16 text-center">
+        <h1 className="text-4xl font-bold mb-4">
+          Website Templates for Small Businesses
+        </h1>
+
+        <h2 className="text-2xl font-semibold mb-4 text-gray-600">
+          Ready-Made Website Designs by Apna Website
+        </h2>
+
+        <p className="text-gray-700 max-w-3xl mx-auto mb-6">
+          Explore professional website templates for gyms, teachers, shops,
+          clinics, and personal brands. All designs are responsive and optimized
+          for search engines.
+        </p>
+
+        <h3 className="text-xl font-semibold mb-2">
+          Fully Customizable Templates
+        </h3>
+
+        <p className="text-gray-700 max-w-2xl mx-auto">
+          Customize colors, text, images, and contact details easily. Create
+          your business website quickly using Apna Website templates.
+        </p>
+      </section>
     </section>
   );
 };

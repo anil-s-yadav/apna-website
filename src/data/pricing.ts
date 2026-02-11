@@ -1,23 +1,25 @@
 export const plans = [
   {
     name: "Basic",
-    price: "₹499",
-    period: "/year",
+    price: "₹99",
+    period: "/mo",
+    total: "₹1,099/year - 7% Off with annual purchase",
     description: "Perfect for getting started",
     features: [
       "1 Page Website",
       "Mobile Responsive",
       "Custom Domain",
       "Basic SEO",
-      "WhatsApp Integration",
+      "WhatsApp  & Social Links",
       "Email Support",
     ],
     highlighted: false,
   },
   {
     name: "Pro",
-    price: "₹999",
-    period: "/year",
+    price: "₹299",
+    period: "/mo",
+    total: "₹3,249/year - 10% Off with annual purchase",
     description: "Best for growing businesses",
     features: [
       "5 Page Website",
@@ -33,8 +35,9 @@ export const plans = [
   },
   {
     name: "Custom",
-    price: "₹2,999",
-    period: "",
+    price: "₹999",
+    period: "/mo",
+    total: "₹10,790/year - 15% Off with annual purchase",
     description: "Tailored to your needs",
     features: [
       "Unlimited Pages",

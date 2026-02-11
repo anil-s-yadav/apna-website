@@ -29,14 +29,22 @@ const Pricing = () => (
               </span>
             )}
             <h3 className="text-xl font-bold text-foreground">{plan.name}</h3>
-            <p className="mt-1 text-sm text-muted-foreground">{plan.description}</p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              {plan.description}
+            </p>
             <div className="mt-6">
-              <span className="text-4xl font-extrabold text-foreground">{plan.price}</span>
+              <span className="text-4xl font-extrabold text-foreground">
+                {plan.price}
+              </span>
               <span className="text-muted-foreground">{plan.period}</span>
             </div>
+            <p className="mt-1 text-sm text-muted-foreground">{plan.total}</p>
             <ul className="mt-6 flex-1 space-y-3">
               {plan.features.map((f) => (
-                <li key={f} className="flex items-center gap-2 text-sm text-foreground">
+                <li
+                  key={f}
+                  className="flex items-center gap-2 text-sm text-foreground"
+                >
                   <Check className="h-4 w-4 shrink-0 text-primary" /> {f}
                 </li>
               ))}
@@ -53,6 +61,27 @@ const Pricing = () => (
         ))}
       </div>
     </div>
+    <section className="max-w-6xl mx-auto px-4 py-16 text-center">
+      <h1 className="text-4xl font-bold mb-4">
+        Affordable Website Pricing Plans
+      </h1>
+
+      <h2 className="text-2xl font-semibold mb-4 text-gray-600">
+        Budget-Friendly Website Packages by Apna Website
+      </h2>
+
+      <p className="text-gray-700 max-w-3xl mx-auto mb-6">
+        Choose from simple and transparent pricing plans designed for small
+        businesses, startups, and freelancers in India.
+      </p>
+
+      <h3 className="text-xl font-semibold mb-2">No Hidden Charges</h3>
+
+      <p className="text-gray-700 max-w-2xl mx-auto">
+        Pay once and get lifetime access to your website with free SSL, mobile
+        optimization, and technical support.
+      </p>
+    </section>
   </section>
 );
 

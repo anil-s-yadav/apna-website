@@ -4,10 +4,11 @@ const About = () => (
   <section className="py-16">
     <div className="container max-w-3xl">
       <h1 className="text-center text-3xl font-bold sm:text-4xl">
-        About <span className="text-gradient">SiteKaro</span>
+        About <span className="text-gradient">Apna Website</span>
       </h1>
       <p className="mx-auto mt-4 text-center text-lg text-muted-foreground">
-        We believe every small business deserves a professional online presence — without the cost, complexity, or coding.
+        We believe every small business deserves a professional online presence
+        — without the cost, complexity, or coding.
       </p>
 
       <div className="mt-14 space-y-10">
@@ -18,9 +19,13 @@ const About = () => (
             </div>
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-foreground">Our Mission</h3>
+            <h3 className="text-lg font-semibold text-foreground">
+              Our Mission
+            </h3>
             <p className="mt-1 text-muted-foreground">
-              To empower gym owners, teachers, content creators, and shop owners across India to create beautiful, functional websites in minutes — starting at just ₹499/year.
+              To empower gym owners, teachers, content creators, and shop owners
+              across India to create beautiful, functional websites in minutes —
+              starting at just ₹99/year.
             </p>
           </div>
         </div>
@@ -34,7 +39,10 @@ const About = () => (
           <div>
             <h3 className="text-lg font-semibold text-foreground">Our Story</h3>
             <p className="mt-1 text-muted-foreground">
-              SiteKaro was born from a simple observation: millions of small businesses in India have no online presence. Not because they don't want one, but because existing tools are either too expensive or too complicated. We set out to change that.
+              Apna Website was born from a simple observation: millions of small
+              businesses in India have no online presence. Not because they
+              don't want one, but because existing tools are either too
+              expensive or too complicated. We set out to change that.
             </p>
           </div>
         </div>
@@ -46,9 +54,13 @@ const About = () => (
             </div>
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-foreground">Our Impact</h3>
+            <h3 className="text-lg font-semibold text-foreground">
+              Our Impact
+            </h3>
             <p className="mt-1 text-muted-foreground">
-              Over 2,000 businesses have gone online with SiteKaro. From a yoga teacher in Jaipur to a bakery in Bengaluru — we've helped entrepreneurs across the country reach new customers.
+              Over 2,000 businesses have gone online with Apna Website. From a
+              yoga teacher in Jaipur to a bakery in Bengaluru — we've helped
+              entrepreneurs across the country reach new customers.
             </p>
           </div>
         </div>

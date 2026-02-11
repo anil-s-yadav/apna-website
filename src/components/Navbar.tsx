@@ -18,9 +18,12 @@ const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-lg">
       <nav className="container flex h-16 items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 font-heading text-xl font-bold text-foreground">
+        <Link
+          to="/"
+          className="flex items-center gap-2 font-heading text-xl font-bold text-foreground"
+        >
           <Globe className="h-6 w-6 text-primary" />
-          SiteKaro
+          Apna Website
         </Link>
 
         {/* Desktop */}
@@ -30,7 +33,9 @@ const Navbar = () => {
               <Link
                 to={l.to}
                 className={`rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-secondary ${
-                  location.pathname === l.to ? "text-primary" : "text-muted-foreground"
+                  location.pathname === l.to
+                    ? "text-primary"
+                    : "text-muted-foreground"
                 }`}
               >
                 {l.label}
@@ -41,7 +46,9 @@ const Navbar = () => {
 
         <div className="hidden items-center gap-3 md:flex">
           <Link to="/dashboard">
-            <Button variant="ghost" size="sm">Login</Button>
+            <Button variant="ghost" size="sm">
+              Login
+            </Button>
           </Link>
           <Link to="/create">
             <Button size="sm">Get Started</Button>
@@ -49,7 +56,11 @@ const Navbar = () => {
         </div>
 
         {/* Mobile toggle */}
-        <button className="md:hidden" onClick={() => setOpen(!open)} aria-label="Toggle menu">
+        <button
+          className="md:hidden"
+          onClick={() => setOpen(!open)}
+          aria-label="Toggle menu"
+        >
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </nav>
@@ -64,7 +75,9 @@ const Navbar = () => {
                   to={l.to}
                   onClick={() => setOpen(false)}
                   className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-secondary ${
-                    location.pathname === l.to ? "text-primary" : "text-muted-foreground"
+                    location.pathname === l.to
+                      ? "text-primary"
+                      : "text-muted-foreground"
                   }`}
                 >
                   {l.label}
@@ -74,7 +87,9 @@ const Navbar = () => {
           </ul>
           <div className="mt-3 flex flex-col gap-2">
             <Link to="/dashboard" onClick={() => setOpen(false)}>
-              <Button variant="ghost" className="w-full">Login</Button>
+              <Button variant="ghost" className="w-full">
+                Login
+              </Button>
             </Link>
             <Link to="/create" onClick={() => setOpen(false)}>
               <Button className="w-full">Get Started</Button>

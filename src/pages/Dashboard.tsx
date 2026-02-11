@@ -29,22 +29,40 @@ const Dashboard = () => {
             {isRegister ? "Create Account" : "Welcome Back"}
           </h1>
           <p className="mt-1 text-center text-sm text-muted-foreground">
-            {isRegister ? "Sign up to manage your websites" : "Login to your dashboard"}
+            {isRegister
+              ? "Sign up to manage your websites"
+              : "Login to your dashboard"}
           </p>
           <form onSubmit={handleAuth} className="mt-6 space-y-4">
             {isRegister && (
               <div className="space-y-2">
                 <Label htmlFor="name">Full Name</Label>
-                <Input id="name" placeholder="Your name" required maxLength={100} />
+                <Input
+                  id="name"
+                  placeholder="Your name"
+                  required
+                  maxLength={100}
+                />
               </div>
             )}
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" placeholder="you@example.com" required maxLength={255} />
+              <Input
+                id="email"
+                type="email"
+                placeholder="you@example.com"
+                required
+                maxLength={255}
+              />
             </div>
             <div className="space-y-2">
               <Label htmlFor="password">Password</Label>
-              <Input id="password" type="password" placeholder="••••••••" required />
+              <Input
+                id="password"
+                type="password"
+                placeholder="••••••••"
+                required
+              />
             </div>
             <Button type="submit" className="w-full">
               {isRegister ? "Sign Up" : "Login"}
@@ -52,7 +70,10 @@ const Dashboard = () => {
           </form>
           <p className="mt-4 text-center text-sm text-muted-foreground">
             {isRegister ? "Already have an account?" : "Don't have an account?"}{" "}
-            <button onClick={() => setIsRegister(!isRegister)} className="font-medium text-primary hover:underline">
+            <button
+              onClick={() => setIsRegister(!isRegister)}
+              className="font-medium text-primary hover:underline"
+            >
               {isRegister ? "Login" : "Sign Up"}
             </button>
           </p>
@@ -66,7 +87,11 @@ const Dashboard = () => {
       <div className="container max-w-3xl">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-bold sm:text-3xl">My Websites</h1>
-          <Button variant="outline" size="sm" onClick={() => setIsLoggedIn(false)}>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setIsLoggedIn(false)}
+          >
             Logout
           </Button>
         </div>
@@ -78,7 +103,9 @@ const Dashboard = () => {
               className="flex items-center justify-between rounded-xl border border-border bg-card p-5 shadow-card"
             >
               <div>
-                <h3 className="font-semibold text-card-foreground">{site.name}</h3>
+                <h3 className="font-semibold text-card-foreground">
+                  {site.name}
+                </h3>
                 <span
                   className={`mt-1 inline-block rounded-full px-2.5 py-0.5 text-xs font-medium ${
                     site.status === "Live"
@@ -96,6 +123,29 @@ const Dashboard = () => {
           ))}
         </div>
       </div>
+      <section className="max-w-6xl mx-auto px-4 py-16 text-center">
+        <h1 className="text-4xl font-bold mb-4">
+          Manage Your Website Dashboard
+        </h1>
+
+        <h2 className="text-2xl font-semibold mb-4 text-gray-600">
+          Control Your Website with Apna Website Panel
+        </h2>
+
+        <p className="text-gray-700 max-w-3xl mx-auto mb-6">
+          Use your dashboard to update content, manage pages, change designs,
+          and monitor your website performance easily.
+        </p>
+
+        <h3 className="text-xl font-semibold mb-2">
+          Complete Website Management
+        </h3>
+
+        <p className="text-gray-700 max-w-2xl mx-auto">
+          Track visitors, edit business information, and customize layouts from
+          one secure and user-friendly platform.
+        </p>
+      </section>
     </section>
   );
 };

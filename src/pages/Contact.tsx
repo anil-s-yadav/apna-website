@@ -9,7 +9,9 @@ import { toast } from "sonner";
 const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -42,7 +44,9 @@ const Contact = () => {
               </div>
               <div>
                 <h3 className="font-semibold text-foreground">Email</h3>
-                <p className="text-sm text-muted-foreground">hello@sitekaro.com</p>
+                <p className="text-sm text-muted-foreground">
+                  anilyadav44x@gmail.com
+                </p>
               </div>
             </div>
             <div className="flex items-start gap-4">
@@ -51,7 +55,7 @@ const Contact = () => {
               </div>
               <div>
                 <h3 className="font-semibold text-foreground">Phone</h3>
-                <p className="text-sm text-muted-foreground">+91 98765 43210</p>
+                <p className="text-sm text-muted-foreground">+91 9892986314</p>
               </div>
             </div>
             <a
@@ -65,23 +69,72 @@ const Contact = () => {
           </div>
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-5 rounded-xl border border-border bg-card p-6 shadow-card">
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-5 rounded-xl border border-border bg-card p-6 shadow-card"
+          >
             <div className="space-y-2">
               <Label htmlFor="name">Name</Label>
-              <Input id="name" name="name" value={form.name} onChange={handleChange} placeholder="Your name" maxLength={100} />
+              <Input
+                id="name"
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+                placeholder="Your name"
+                maxLength={100}
+              />
             </div>
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
-              <Input id="email" name="email" type="email" value={form.email} onChange={handleChange} placeholder="you@example.com" maxLength={255} />
+              <Input
+                id="email"
+                name="email"
+                type="email"
+                value={form.email}
+                onChange={handleChange}
+                placeholder="you@example.com"
+                maxLength={255}
+              />
             </div>
             <div className="space-y-2">
               <Label htmlFor="message">Message</Label>
-              <Textarea id="message" name="message" value={form.message} onChange={handleChange} placeholder="How can we help?" rows={4} maxLength={1000} />
+              <Textarea
+                id="message"
+                name="message"
+                value={form.message}
+                onChange={handleChange}
+                placeholder="How can we help?"
+                rows={4}
+                maxLength={1000}
+              />
             </div>
-            <Button type="submit" className="w-full">Send Message</Button>
+            <Button type="submit" className="w-full">
+              Send Message
+            </Button>
           </form>
         </div>
       </div>
+      <section className="max-w-6xl mx-auto px-4 py-16 text-center">
+        <h1 className="text-4xl font-bold mb-4">
+          Contact Apna Website Support Team
+        </h1>
+
+        <h2 className="text-2xl font-semibold mb-4 text-gray-600">
+          Get Help with Your Business Website
+        </h2>
+
+        <p className="text-gray-700 max-w-3xl mx-auto mb-6">
+          Reach out to Apna Website for website creation, customization, pricing
+          inquiries, and technical support. We are here to help you.
+        </p>
+
+        <h3 className="text-xl font-semibold mb-2">Talk to Website Experts</h3>
+
+        <p className="text-gray-700 max-w-2xl mx-auto">
+          Our team provides reliable guidance to help small businesses grow
+          online with professional websites.
+        </p>
+      </section>
     </section>
   );
 };
