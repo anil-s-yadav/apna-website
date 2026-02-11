@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => ({
   },
   build: {
     outDir: "dist",
-    sourcemap: false, //  IMPORTANT (removes eval source maps)
+    sourcemap: false,
   },
 
   esbuild: {
