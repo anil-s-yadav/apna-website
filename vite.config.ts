@@ -12,7 +12,6 @@ export default defineConfig(({ mode }) => ({
       overlay: false,
     },
   },
-  base: "/apna-website/",
   build: {
     outDir: "docs", //  important
   },
