@@ -13,8 +13,14 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    outDir: "docs", //  important
+    outDir: "dist",
+    sourcemap: false, //  IMPORTANT (removes eval source maps)
   },
+
+  esbuild: {
+    legalComments: "none",
+  },
+
   plugins: [react(), mode === "development" && componentTagger()].filter(
     Boolean,
   ),
