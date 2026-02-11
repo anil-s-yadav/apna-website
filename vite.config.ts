@@ -13,6 +13,9 @@ export default defineConfig(({ mode }) => ({
     },
   },
   base: "/apna-website/",
+  build: {
+    outDir: "docs", //  important
+  },
   plugins: [react(), mode === "development" && componentTagger()].filter(
     Boolean,
   ),
