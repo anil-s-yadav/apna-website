@@ -160,27 +160,48 @@ const CreateWebsite = () => {
           </Button>
         </form>
       </div>
-      <section className="max-w-6xl mx-auto px-4 py-16 text-center">
-        <h1 className="text-4xl font-bold mb-4">
-          Create Your Business Website Online
-        </h1>
+      <section className="max-w-5xl mx-auto px-4 py-16">
+        <div className="rounded-2xl bg-gradient-to-br from-primary/5 via-transparent to-primary/5 border border-primary/10 p-12">
+          <div className="space-y-6">
+            <div>
+              <h2 className="text-sm font-semibold uppercase tracking-wide text-primary mb-2">
+                Quick Setup
+              </h2>
+              <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent mb-3">
+                Create Your Business Website Online
+              </h1>
+              <p className="text-lg text-muted-foreground mb-6">
+                Build Your Website Without Technical Skills
+              </p>
+            </div>
 
-        <h2 className="text-2xl font-semibold mb-4 text-gray-600">
-          Build Your Website Without Technical Skills
-        </h2>
+            <div className="grid sm:grid-cols-2 gap-8">
+              <div className="space-y-3">
+                <h3 className="font-semibold text-foreground flex items-center gap-2">
+                  <span className="h-1 w-1 rounded-full bg-primary"></span>
+                  Effortless Creation
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  With Apna Website, you can create a professional website by
+                  simply entering your business details. Our system
+                  automatically generates your complete website.
+                </p>
+              </div>
 
-        <p className="text-gray-700 max-w-3xl mx-auto mb-6">
-          With Apna Website, you can create a professional website by simply
-          entering your business details. Our system automatically generates
-          your complete website.
-        </p>
-
-        <h3 className="text-xl font-semibold mb-2">Instant Website Setup</h3>
-
-        <p className="text-gray-700 max-w-2xl mx-auto">
-          Get your gym website, shop website, or portfolio website live within
-          hours. No developer required. Everything is managed online.
-        </p>
+              <div className="space-y-3">
+                <h3 className="font-semibold text-foreground flex items-center gap-2">
+                  <span className="h-1 w-1 rounded-full bg-primary"></span>
+                  Instant Website Setup
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Get your gym website, shop website, or portfolio website live
+                  within hours. No developer required. Everything is managed
+                  online.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </section>
   );

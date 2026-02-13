@@ -13,6 +13,10 @@ import Contact from "./pages/Contact";
 import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 
+import BlogList from "./pages/BlogList";
+import BlogPostPage from "./pages/BlogPostPage";
+import ScrollToTop from "@/components/ScrollToTop";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -21,6 +25,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Index />} />
@@ -30,6 +35,8 @@ const App = () => (
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/blog" element={<BlogList />} />
+            <Route path="/blog/:id" element={<BlogPostPage />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import { plans } from "@/data/pricing";
+import HowWeWork from "@/components/HowWeWork";
 
 const Pricing = () => (
   <section className="py-16">
@@ -54,33 +55,68 @@ const Pricing = () => (
                 className="w-full"
                 variant={plan.highlighted ? "default" : "outline"}
               >
-                Buy Now
+                Create Now
               </Button>
             </Link>
           </div>
         ))}
       </div>
     </div>
-    <section className="max-w-6xl mx-auto px-4 py-16 text-center">
-      <h1 className="text-4xl font-bold mb-4">
-        Affordable Website Pricing Plans
-      </h1>
 
-      <h2 className="text-2xl font-semibold mb-4 text-gray-600">
-        Budget-Friendly Website Packages by Apna Website
-      </h2>
+    {/* How It Works */}
+    <section className="py-20 bg-gradient-to-b from-transparent to-primary/5">
+      <div className="container">
+        <h2 className="text-center text-3xl font-bold text-foreground sm:text-4xl mb-3">
+          Simple Pricing, <span className="text-gradient">Clear Process</span>
+        </h2>
+        <p className="mx-auto mt-3 max-w-xl text-center text-muted-foreground mb-14">
+          Create and preview your website for free. Only pay when you're ready
+          to go live.
+        </p>
+        <HowWeWork />
+      </div>
+    </section>
 
-      <p className="text-gray-700 max-w-3xl mx-auto mb-6">
-        Choose from simple and transparent pricing plans designed for small
-        businesses, startups, and freelancers in India.
-      </p>
+    <section className="max-w-5xl mx-auto px-4 py-16">
+      <div className="rounded-2xl bg-gradient-to-br from-primary/5 via-transparent to-primary/5 border border-primary/10 p-12">
+        <div className="space-y-6">
+          <div>
+            <h2 className="text-sm font-semibold uppercase tracking-wide text-primary mb-2">
+              Transparent Pricing
+            </h2>
+            <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent mb-3">
+              Affordable Website Pricing Plans
+            </h1>
+            <p className="text-lg text-muted-foreground mb-6">
+              Budget-Friendly Website Packages by Apna Website
+            </p>
+          </div>
 
-      <h3 className="text-xl font-semibold mb-2">No Hidden Charges</h3>
+          <div className="grid sm:grid-cols-2 gap-8">
+            <div className="space-y-3">
+              <h3 className="font-semibold text-foreground flex items-center gap-2">
+                <span className="h-1 w-1 rounded-full bg-primary"></span>
+                Simple Plans for Everyone
+              </h3>
+              <p className="text-muted-foreground leading-relaxed">
+                Choose from simple and transparent pricing plans designed for
+                small businesses, startups, and freelancers in India.
+              </p>
+            </div>
 
-      <p className="text-gray-700 max-w-2xl mx-auto">
-        Pay once and get lifetime access to your website with free SSL, mobile
-        optimization, and technical support.
-      </p>
+            <div className="space-y-3">
+              <h3 className="font-semibold text-foreground flex items-center gap-2">
+                <span className="h-1 w-1 rounded-full bg-primary"></span>
+                No Hidden Charges
+              </h3>
+              <p className="text-muted-foreground leading-relaxed">
+                Pay once and get lifetime access to your website with free SSL,
+                mobile optimization, and technical support.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   </section>
 );

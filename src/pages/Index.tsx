@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Zap, Clock, Smartphone, Shield } from "lucide-react";
 import heroImage from "@/assets/hero-image.jpg";
+import HowWeWork from "@/components/HowWeWork";
+import GetStartedDialog from "@/components/GetStartedDialog";
 
 const features = [
   {
@@ -27,8 +30,11 @@ const features = [
 ];
 
 const Index = () => {
+  const [dialogOpen, setDialogOpen] = useState(false);
+
   return (
     <>
+      <GetStartedDialog open={dialogOpen} onOpenChange={setDialogOpen} />
       {/* Hero */}
       <section className="relative overflow-hidden bg-hero-gradient py-20 lg:py-28">
         <div className="container relative z-10 grid items-center gap-10 lg:grid-cols-2">
@@ -47,14 +53,13 @@ const Index = () => {
               channel, or shop starting at ₹99/month.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <Link to="/create">
-                <Button
-                  size="lg"
-                  className="bg-accent text-accent-foreground hover:bg-accent-foreground hover:text-accent"
-                >
-                  Get Started <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
+              <Button
+                onClick={() => setDialogOpen(true)}
+                size="lg"
+                className="bg-accent text-accent-foreground hover:bg-accent-foreground hover:text-accent"
+              >
+                Get Started <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
               <Link to="/templates">
                 <Button
                   size="lg"
@@ -64,7 +69,12 @@ const Index = () => {
                   View Templates
                 </Button>
               </Link>
+              <span className="mb-4 inline-block rounded-full bg-primary-foreground/10 px-4 py-2 text-sm font-medium text-primary-foreground backdrop-blur-sm ">
+                Choose a Template -{"> "}Customize Your Website -{"> "}
+                Go Live
+              </span>
             </div>
+            {/* <span className="mt-6 inline-block rounded-full bg-primary-foreground/10 px-4 py-2 text-sm font-medium text-primary-foreground backdrop-blur-sm" /> */}
           </div>
 
           <div className="animate-fade-in hidden lg:block">
@@ -107,6 +117,20 @@ const Index = () => {
         </div>
       </section>
 
+      {/* How We Work */}
+      <section className="py-20 bg-gradient-to-b from-transparent to-primary/5">
+        <div className="container">
+          <h2 className="text-center text-3xl font-bold text-foreground sm:text-4xl mb-3">
+            How It <span className="text-gradient">Works</span>
+          </h2>
+          <p className="mx-auto mt-3 max-w-xl text-center text-muted-foreground mb-14">
+            From template selection to going live, we've made the process simple
+            and straightforward.
+          </p>
+          <HowWeWork />
+        </div>
+      </section>
+
       {/* <section className="max-w-6xl mx-auto px-4 py-16 text-center">
         <h1 className="text-4xl font-bold mb-4">
           Affordable Website Builder for Small Businesses in India
@@ -132,29 +156,48 @@ const Index = () => {
           price with complete technical support.
         </p>
       </section> */}
-      <section className="max-w-6xl mx-auto px-4 py-16 text-center">
-        <h1 className="text-4xl font-bold mb-4">
-          Affordable Website Builder for Small Businesses in India
-        </h1>
+      <section className="max-w-5xl mx-auto px-4 py-16">
+        <div className="rounded-2xl bg-gradient-to-br from-primary/5 via-transparent to-primary/5 border border-primary/10 p-12">
+          <div className="space-y-6">
+            <div>
+              <h2 className="text-sm font-semibold uppercase tracking-wide text-primary mb-2">
+                Website Builder
+              </h2>
+              <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent mb-3">
+                Affordable Website Builder for Small Businesses in India
+              </h1>
+              <p className="text-lg text-muted-foreground mb-6">
+                Build Professional Websites with Apna Website
+              </p>
+            </div>
 
-        <h2 className="text-2xl font-semibold mb-4 text-gray-600">
-          Build Professional Websites with Apna Website
-        </h2>
+            <div className="grid sm:grid-cols-2 gap-8">
+              <div className="space-y-3">
+                <h3 className="font-semibold text-foreground flex items-center gap-2">
+                  <span className="h-1 w-1 rounded-full bg-primary"></span>
+                  Easy Website Creation
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Apna Website helps gyms, teachers, shops, YouTubers, and
+                  freelancers create modern, mobile-friendly, and SEO-optimized
+                  websites at an affordable price. No coding required.
+                </p>
+              </div>
 
-        <p className="text-gray-700 max-w-3xl mx-auto mb-6">
-          Apna Website helps gyms, teachers, shops, YouTubers, and freelancers
-          create modern, mobile-friendly, and SEO-optimized websites at an
-          affordable price. No coding required.
-        </p>
-
-        <h3 className="text-xl font-semibold mb-2">
-          Trusted Website Platform for Local Businesses
-        </h3>
-
-        <p className="text-gray-700 max-w-2xl mx-auto">
-          Launch your business website in minutes with secure hosting, fast
-          performance, and full technical support from Apna Website.
-        </p>
+              <div className="space-y-3">
+                <h3 className="font-semibold text-foreground flex items-center gap-2">
+                  <span className="h-1 w-1 rounded-full bg-primary"></span>
+                  Trusted Website Platform
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Launch your business website in minutes with secure hosting,
+                  fast performance, and full technical support from Apna
+                  Website.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* CTA */}

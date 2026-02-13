@@ -114,26 +114,47 @@ const Contact = () => {
           </form>
         </div>
       </div>
-      <section className="max-w-6xl mx-auto px-4 py-16 text-center">
-        <h1 className="text-4xl font-bold mb-4">
-          Contact Apna Website Support Team
-        </h1>
+      <section className="max-w-6xl mx-auto px-4 py-16">
+        <div className="rounded-2xl bg-gradient-to-br from-primary/5 via-transparent to-primary/5 border border-primary/10 p-12">
+          <div className="space-y-6">
+            <div>
+              <h2 className="text-sm font-semibold uppercase tracking-wide text-primary mb-2">
+                Support & Guidance
+              </h2>
+              <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent mb-3">
+                Contact Apna Website Support Team
+              </h1>
+              <p className="text-lg text-muted-foreground mb-6">
+                Get Help with Your Business Website
+              </p>
+            </div>
 
-        <h2 className="text-2xl font-semibold mb-4 text-gray-600">
-          Get Help with Your Business Website
-        </h2>
+            <div className="grid sm:grid-cols-2 gap-8">
+              <div className="space-y-3">
+                <h3 className="font-semibold text-foreground flex items-center gap-2">
+                  <span className="h-1 w-1 rounded-full bg-primary"></span>
+                  Expert Support
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Reach out to Apna Website for website creation, customization,
+                  pricing inquiries, and technical support. We are here to help
+                  you succeed.
+                </p>
+              </div>
 
-        <p className="text-gray-700 max-w-3xl mx-auto mb-6">
-          Reach out to Apna Website for website creation, customization, pricing
-          inquiries, and technical support. We are here to help you.
-        </p>
-
-        <h3 className="text-xl font-semibold mb-2">Talk to Website Experts</h3>
-
-        <p className="text-gray-700 max-w-2xl mx-auto">
-          Our team provides reliable guidance to help small businesses grow
-          online with professional websites.
-        </p>
+              <div className="space-y-3">
+                <h3 className="font-semibold text-foreground flex items-center gap-2">
+                  <span className="h-1 w-1 rounded-full bg-primary"></span>
+                  Talk to Website Experts
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Our team provides reliable guidance to help small businesses
+                  grow online with professional websites.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </section>
   );
