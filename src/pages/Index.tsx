@@ -69,9 +69,10 @@ const Index = () => {
                   View Templates
                 </Button>
               </Link>
-              <span className="mb-4 inline-block rounded-full bg-primary-foreground/10 px-4 py-2 text-sm font-medium text-primary-foreground backdrop-blur-sm ">
-                Choose a Template -{"> "}Customize Your Website -{"> "}
-                Go Live
+              <span className="mb-4 inline-block items-center justify-center rounded-lg bg-primary-foreground/10 px-4 py-2 text-sm font-medium text-primary-foreground backdrop-blur-sm ">
+                Step 1 - Choose a Template,
+                <br></br>Step 2 - Customize Your Website
+                <br></br>Step 3 - Go Live
               </span>
             </div>
             {/* <span className="mt-6 inline-block rounded-full bg-primary-foreground/10 px-4 py-2 text-sm font-medium text-primary-foreground backdrop-blur-sm" /> */}

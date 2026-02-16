@@ -87,18 +87,24 @@ const HowWeWork = () => {
       </div>
       {/* Mobile Layout */}
       <div className="sm:hidden space-y-6">
-        {steps.map((step) => {
+        {steps.map((step, index) => {
           const Icon = step.icon;
+          const colors = colorStyles[index];
 
           return (
             <div key={step.number} className="flex items-start gap-4">
               {/* Number + Icon */}
-              <div className="relative flex-shrink-0">
-                <div className="h-12 w-12 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center">
-                  <Icon className="h-5 w-5 text-primary" />
+              <div className="relative mb-4">
+                <div
+                  className={`h-16 w-16 rounded-full flex items-center justify-center ${colors.bg}`}
+                >
+                  <Icon className={`h-6 w-6 ${colors.icon}`} />
                 </div>
 
-                <div className="absolute -bottom-1 -right-1 bg-primary text-primary-foreground text-[10px] font-bold px-1.5 py-0.5 rounded-full">
+                {/* Number Badge */}
+                <div
+                  className={`absolute -bottom-2 -right-2 text-white text-xs font-semibold px-2 py-0.5 rounded-full shadow ${colors.number}`}
+                >
                   {step.number}
                 </div>
               </div>
