@@ -2,7 +2,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Eye } from "lucide-react";
+import { Eye, FileText, Search, Zap } from "lucide-react";
 import { templates, categories } from "@/data/templates";
 import HowWeWork from "@/components/HowWeWork";
 
@@ -13,7 +13,23 @@ const Templates = () => {
     active === "All"
       ? templates
       : templates.filter((t) => t.category === active);
-
+  const steps = [
+    {
+      number: "01",
+      title: "Choose",
+      icon: Search,
+    },
+    {
+      number: "02",
+      title: "Customize",
+      icon: FileText,
+    },
+    {
+      number: "03",
+      title: "Publish",
+      icon: Zap,
+    },
+  ];
   return (
     <section className="py-16">
       <div className="container">
@@ -25,11 +41,34 @@ const Templates = () => {
         </p>
 
         {/* Process Steps */}
-        <div className="mt-16 mb-16 py-10 px-6 rounded-2xl bg-gradient-to-br from-primary/5 to-primary/10 border border-primary/10">
-          <h2 className="text-center text-2xl font-bold mb-8 text-foreground">
-            Your Path to a <span className="text-gradient">Live Website</span>
-          </h2>
-          <HowWeWork />
+        <div className="mx-auto mt-6 max-w-md rounded-2xl bg-primary/5 border border-primary/10 px-8 py-6">
+          <p className="text-xs text-center text-muted-foreground mb-6">
+            3 simple steps to launch your site
+          </p>
+
+          <div className="relative flex items-center justify-between">
+            {/* connector line */}
+            <div className="absolute left-[60px] right-[60px] top-5 h-[2px] bg-primary/20" />
+
+            {steps.map((step, i) => {
+              const Icon = step.icon;
+
+              return (
+                <div
+                  key={i}
+                  className="flex flex-col items-center text-center relative z-10"
+                >
+                  <div className="h-11 w-11 rounded-full bg-white border border-primary/10 shadow-sm flex items-center justify-center">
+                    <Icon className="h-4 w-4 text-primary" />
+                  </div>
+
+                  <p className="text-xs mt-2 text-muted-foreground">
+                    {step.title}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         {/* Category Tabs */}

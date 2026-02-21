@@ -29,7 +29,7 @@ const GetStartedDialog = ({ open, onOpenChange }: GetStartedDialogProps) => {
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold">How It Works</DialogTitle>
           <DialogDescription className="text-base mt-1">
-            Create your professional website in just 5 simple steps. No coding
+            Create your professional website in just 3 simple steps. No coding
             required!
           </DialogDescription>
         </DialogHeader>
