@@ -5,21 +5,21 @@ const HowWeWork = () => {
     {
       number: "01",
       title: "Choose a Template",
-      description:
-        "Explore our collection of professionally designed templates.",
+      // description:
+      //   "Explore our collection of professionally designed templates.",
       icon: Search,
     },
     {
       number: "02",
       title: "Customize Your Website",
-      description:
-        "Add your business information and personalize your content.",
+      // description:
+      //   "Add your business information and personalize your content.",
       icon: FileText,
     },
     {
       number: "03",
       title: "Go Live",
-      description: "Launch your website and start serving customers.",
+      // description: "Launch your website and start serving customers.",
       icon: Zap,
     },
   ];
@@ -78,9 +78,9 @@ const HowWeWork = () => {
               <h3 className="text-sm font-semibold text-foreground">
                 {step.title}
               </h3>
-              <p className="text-xs text-muted-foreground mt-1 max-w-[160px]">
+              {/* <p className="text-xs text-muted-foreground mt-1 max-w-[160px]">
                 {step.description}
-              </p>
+              </p> */}
             </div>
           );
         })}
@@ -113,9 +113,9 @@ const HowWeWork = () => {
                 <h3 className="text-sm font-semibold text-foreground">
                   {step.title}
                 </h3>
-                <p className="text-xs text-muted-foreground mt-1">
+                {/* <p className="text-xs text-muted-foreground mt-1">
                   {step.description}
-                </p>
+                </p> */}
               </div>
             </div>
           );

@@ -210,14 +210,14 @@ const Index = () => {
           <p className="mx-auto mt-3 max-w-md text-primary-foreground/80">
             Join thousands of businesses already using Apna Website.
           </p>
-          <Link to="/create">
-            <Button
-              size="lg"
-              className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90"
-            >
-              Start Building Now <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </Link>
+
+          <Button
+            onClick={() => setDialogOpen(true)}
+            size="lg"
+            className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90"
+          >
+            Start Building Now <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
         </div>
       </section>
     </>

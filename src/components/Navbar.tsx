@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import GetStartedDialog from "./GetStartedDialog";
 
 const navLinks = [
   { to: "/", label: "Home" },
@@ -14,10 +15,13 @@ const navLinks = [
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
   const location = useLocation();
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-lg">
+      {" "}
+      <GetStartedDialog open={dialogOpen} onOpenChange={setDialogOpen} />
       <nav className="container flex h-16 items-center justify-between">
         <Link
           to="/"
@@ -51,9 +55,11 @@ const Navbar = () => {
               Login
             </Button>
           </Link>
-          <Link to="/create">
-            <Button size="sm">Get Started</Button>
-          </Link>
+          {/* <Link to="/create"> */}
+          <Button onClick={() => setDialogOpen(true)} size="sm">
+            Get Started
+          </Button>
+          {/* </Link> */}
         </div>
 
         {/* Mobile toggle */}
@@ -65,7 +71,6 @@ const Navbar = () => {
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </nav>
-
       {/* Mobile menu */}
       {open && (
         <div className="border-t border-border bg-background px-4 pb-4 md:hidden animate-fade-in">
