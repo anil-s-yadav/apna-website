@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Zap, Clock, Smartphone, Shield } from "lucide-react";
 import heroImage from "@/assets/hero-image.jpg";
 import HowWeWork from "@/components/HowWeWork";
 import GetStartedDialog from "@/components/GetStartedDialog";
+import { trackPageView, trackGetStartedClick } from "@/lib/analytics";
 
 const features = [
   {
@@ -32,6 +33,10 @@ const features = [
 const Index = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
 
+  useEffect(() => {
+    trackPageView("home");
+  }, []);
+
   return (
     <>
       <GetStartedDialog open={dialogOpen} onOpenChange={setDialogOpen} />
@@ -54,7 +59,10 @@ const Index = () => {
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Button
-                onClick={() => setDialogOpen(true)}
+                onClick={() => {
+                  setDialogOpen(true);
+                  trackGetStartedClick("hero");
+                }}
                 size="lg"
                 className="bg-accent text-accent-foreground hover:bg-accent-foreground hover:text-accent"
               >
@@ -212,7 +220,10 @@ const Index = () => {
           </p>
 
           <Button
-            onClick={() => setDialogOpen(true)}
+            onClick={() => {
+              setDialogOpen(true);
+              trackGetStartedClick("cta");
+            }}
             size="lg"
             className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90"
           >

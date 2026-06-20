@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import GetStartedDialog from "./GetStartedDialog";
+import { trackGetStartedClick } from "@/lib/analytics";
 
 const navLinks = [
   { to: "/", label: "Home" },
@@ -55,11 +56,15 @@ const Navbar = () => {
               Login
             </Button>
           </Link>
-          {/* <Link to="/create"> */}
-          <Button onClick={() => setDialogOpen(true)} size="sm">
+          <Button
+            onClick={() => {
+              setDialogOpen(true);
+              trackGetStartedClick("navbar");
+            }}
+            size="sm"
+          >
             Get Started
           </Button>
-          {/* </Link> */}
         </div>
 
         {/* Mobile toggle */}
@@ -97,9 +102,16 @@ const Navbar = () => {
                 Login
               </Button>
             </Link>
-            <Link to="/create" onClick={() => setOpen(false)}>
-              <Button className="w-full">Get Started</Button>
-            </Link>
+            <Button
+              className="w-full"
+              onClick={() => {
+                setOpen(false);
+                setDialogOpen(true);
+                trackGetStartedClick("navbar");
+              }}
+            >
+              Get Started
+            </Button>
           </div>
         </div>
       )}

@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import HowWeWork from "./HowWeWork";
+import { trackGetStartedClick } from "@/lib/analytics";
 
 interface GetStartedDialogProps {
   open: boolean;
@@ -20,6 +21,7 @@ const GetStartedDialog = ({ open, onOpenChange }: GetStartedDialogProps) => {
 
   const handleStart = () => {
     onOpenChange(false);
+    trackGetStartedClick("dialog");
     navigate("/templates");
   };
 

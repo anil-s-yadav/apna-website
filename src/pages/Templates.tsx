@@ -1,18 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Eye, FileText, Search, Zap } from "lucide-react";
 import { templates, categories } from "@/data/templates";
 import HowWeWork from "@/components/HowWeWork";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  trackPageView,
+  trackTemplateClick,
+  trackTemplatePreview,
+  trackCategoryFilter,
+} from "@/lib/analytics";
 
 const Templates = () => {
   const [active, setActive] = useState<string>("All");
+
+  useEffect(() => {
+    trackPageView("templates");
+  }, []);
 
   const filtered =
     active === "All"
       ? templates
       : templates.filter((t) => t.category === active);
+
   const steps = [
     {
       number: "01",
@@ -30,6 +42,7 @@ const Templates = () => {
       icon: Zap,
     },
   ];
+
   return (
     <section className="py-16">
       <div className="container">
@@ -71,21 +84,64 @@ const Templates = () => {
           </div>
         </div>
 
-        {/* Category Tabs */}
-        <div className="mt-10 flex flex-wrap justify-center gap-2">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActive(cat)}
-              className={`rounded-full px-5 py-2 text-sm font-medium transition-colors ${
-                active === cat
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
+        {/* Category Filter Dropdown (visible on mobile) */}
+        <div className="mt-8 flex justify-center sm:hidden">
+          <select
+            value={active}
+            onChange={(e) => {
+              const val = e.target.value;
+              setActive(val);
+              trackCategoryFilter(val);
+            }}
+            className="w-full max-w-xs rounded-lg border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+          >
+            {categories.map((cat) => {
+              const count =
+                cat === "All"
+                  ? templates.length
+                  : templates.filter((t) => t.category === cat).length;
+              return (
+                <option key={cat} value={cat}>
+                  {cat} ({count})
+                </option>
+              );
+            })}
+          </select>
+        </div>
+
+        {/* Category Tabs (hidden on mobile) */}
+        <div className="mt-10 hidden sm:flex flex-wrap justify-center gap-2">
+          {categories.map((cat) => {
+            const count =
+              cat === "All"
+                ? templates.length
+                : templates.filter((t) => t.category === cat).length;
+            return (
+              <button
+                key={cat}
+                onClick={() => {
+                  setActive(cat);
+                  trackCategoryFilter(cat);
+                }}
+                className={`flex items-center gap-2 rounded-full px-5 py-2 text-sm font-medium transition-colors ${
+                  active === cat
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                }`}
+              >
+                <span>{cat}</span>
+                <span
+                  className={`inline-flex items-center justify-center rounded-full px-2 py-0.5 text-xs font-semibold ${
+                    active === cat
+                      ? "bg-primary-foreground/20 text-primary-foreground"
+                      : "bg-muted text-muted-foreground"
+                  }`}
+                >
+                  {count}
+                </span>
+              </button>
+            );
+          })}
         </div>
 
         {/* Grid */}
@@ -112,16 +168,41 @@ const Templates = () => {
                   </span>
                 </div>
                 <div className="flex items-center justify-between p-4">
-                  <h3 className="font-semibold text-card-foreground">
+                  <h3 className="font-semibold text-card-foreground text-sm truncate max-w-[150px]">
                     {t.name}
                   </h3>
                   <div className="flex gap-2">
-                    <Link to={t.preview}>
-                      <Button variant="ghost" size="sm">
-                        <Eye className="mr-1 h-4 w-4" /> Preview
-                      </Button>
-                    </Link>
-                    <Link to="/create">
+                    {t.preview ? (
+                      <a
+                        href={t.preview}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() =>
+                          trackTemplatePreview(t.id, t.name, t.category)
+                        }
+                      >
+                        <Button variant="ghost" size="sm">
+                          <Eye className="mr-1 h-4 w-4" /> Preview
+                        </Button>
+                      </a>
+                    ) : (
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <span>
+                            <Button variant="ghost" size="sm" disabled>
+                              <Eye className="mr-1 h-4 w-4" /> Preview
+                            </Button>
+                          </span>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Coming Soon</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    )}
+                    <Link
+                      to={`/create?template=${t.id}`}
+                      onClick={() => trackTemplateClick(t.id, t.name, t.category)}
+                    >
                       <Button size="sm">Select</Button>
                     </Link>
                   </div>
