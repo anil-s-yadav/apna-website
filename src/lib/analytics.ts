@@ -16,13 +16,11 @@ const track = (eventName: string, params?: Record<string, string | number | bool
   if (analytics) {
     logEvent(analytics, eventName, params);
   }
-  // Also log to console in development for debugging
-  if (import.meta.env.DEV) {
-    if (params) {
-      console.log(`[Analytics] ${eventName}`, params);
-    } else {
-      console.log(`[Analytics] ${eventName}`);
-    }
+  // Log to console in both Dev and Production environments for verification
+  if (params) {
+    console.log(`[Analytics] ${eventName}`, params);
+  } else {
+    console.log(`[Analytics] ${eventName}`);
   }
 };
 
