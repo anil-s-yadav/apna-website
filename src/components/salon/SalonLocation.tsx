@@ -42,7 +42,7 @@ export const SalonLocation: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
             viewport={{ once: true }}
             className="lg:col-span-7 flex flex-col justify-between space-y-4"
           >

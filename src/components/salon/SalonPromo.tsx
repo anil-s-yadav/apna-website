@@ -31,7 +31,7 @@ const SalonPromo = () => {
             >
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37]/40 text-[#F4E8C1] text-xs font-bold uppercase tracking-wider mb-5">
                 <Gift size={14} className="text-[#D4AF37]" />
-                Exclusive Welcome Pass
+                Exclusive Welcome Offer
               </div>
               
               <h2 className="salon-serif text-3xl sm:text-4xl lg:text-5xl text-white font-medium mb-4 leading-tight">
@@ -45,7 +45,7 @@ const SalonPromo = () => {
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs text-white/60">
                 <span className="flex items-center gap-1"><ShieldCheck size={14} className="text-[#D4AF37]" /> First-time clients only</span>
                 <span>•</span>
-                <span>Valid on Hair & Facial rituals</span>
+                <span>Valid on Hair & Facial services</span>
                 <span>•</span>
                 <span>Andheri West Branch</span>
               </div>
@@ -65,7 +65,7 @@ const SalonPromo = () => {
                 rel="noopener noreferrer"
                 className="salon-btn-gold px-9 py-4 text-base shadow-2xl flex items-center justify-center gap-2 group"
               >
-                Claim 15% VIP Offer <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+                Claim 15% Welcome Offer <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
               </a>
             </motion.div>
           </div>

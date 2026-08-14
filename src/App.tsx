@@ -18,6 +18,7 @@ import BlogList from "./pages/BlogList";
 import BlogPostPage from "./pages/BlogPostPage";
 import ScrollToTop from "@/components/ScrollToTop";
 import SalonDemo from "./pages/SalonDemo";
+import SalonBookingPage from "./pages/SalonBookingPage";
 
 const queryClient = new QueryClient();
 
@@ -41,6 +42,7 @@ const App = () => (
             <Route path="/blog/:id" element={<BlogPostPage />} />
           </Route>
           <Route path="/salon" element={<SalonDemo />} />
+          <Route path="/salon/book" element={<SalonBookingPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

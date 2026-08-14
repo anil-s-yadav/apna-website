@@ -16,10 +16,12 @@ import { SalonFAQ } from '@/components/salon/SalonFAQ';
 import { SalonFinalCTA } from '@/components/salon/SalonFinalCTA';
 import { SalonFooter } from '@/components/salon/SalonFooter';
 import { SalonFloatingActions } from '@/components/salon/SalonFloatingActions';
+import SalonWelcomeDialog from '@/components/salon/SalonWelcomeDialog';
 
 const SalonDemo = () => {
   return (
     <div className="salon-page">
+      <SalonWelcomeDialog />
       <SalonHeader />
       <main>
         <SalonHero />
@@ -28,7 +30,6 @@ const SalonDemo = () => {
         <SalonServices />
         <SalonPromo />
         <SalonGallery />
-        <SalonAppointment />
         <SalonWhyChoose />
         <SalonTestimonials />
         <SalonSocialProof />

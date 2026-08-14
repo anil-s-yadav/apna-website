@@ -31,7 +31,7 @@ const PopularPackages: React.FC = () => {
             Popular Luxury <span className="italic font-normal text-[#A87B75]">Combos & Packages.</span>
           </h2>
           <p className="salon-section-subtitle mx-auto">
-            Save up to 32% with our expertly bundled hair, skin, and grooming rituals. Perfect for weekend pampering or special events.
+            Save up to 32% with our expertly bundled hair, skin, and grooming services. Perfect for weekend pampering or special events.
           </p>
         </motion.div>
 

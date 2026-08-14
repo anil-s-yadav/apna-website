@@ -62,13 +62,13 @@ const galleryItems = [
   },
 ];
 
-const categories = ["All Rituals", "Hair Artistry", "Radiance Skin", "Luxury Spa", "Studio Interior"];
+const categories = ["All Services", "Hair Artistry", "Radiance Skin", "Luxury Spa", "Studio Interior"];
 
 export default function SalonGallery() {
-  const [activeFilter, setActiveFilter] = useState("All Rituals");
+  const [activeFilter, setActiveFilter] = useState("All Services");
   const [activeLightboxItem, setActiveLightboxItem] = useState<typeof galleryItems[0] | null>(null);
 
-  const filteredItems = activeFilter === "All Rituals" 
+  const filteredItems = activeFilter === "All Services" 
     ? galleryItems 
     : galleryItems.filter(item => item.category === activeFilter);
 

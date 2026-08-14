@@ -10,7 +10,7 @@ export const QuickActionBar = () => {
       sublabel: "Instant Confirmation",
       icon: Calendar,
       customIcon: null,
-      href: "#appointment",
+      href: "/salon/book",
       colorClass: "text-[#121113]",
       bgClass: "bg-[#F4EFE6]",
       borderClass: "border-[#C89B95]/30",
@@ -50,15 +50,15 @@ export const QuickActionBar = () => {
   ];
 
   return (
-    <div className="relative z-30 -mt-10 sm:-mt-12 px-4">
+    <div className="hidden md:block relative z-30 -mt-12 px-4">
       <div className="salon-container">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="bg-white/90 backdrop-blur-xl border border-white/80 rounded-2xl sm:rounded-3xl p-3 sm:p-4 shadow-2xl"
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="bg-white/90 backdrop-blur-xl border border-white/80 rounded-3xl p-4 shadow-2xl"
         >
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+          <div className="grid grid-cols-4 gap-4">
             {actions.map((action, idx) => {
               const Icon = action.icon;
               return (
@@ -67,13 +67,13 @@ export const QuickActionBar = () => {
                   href={action.href}
                   target={action.target}
                   rel={action.target === "_blank" ? "noopener noreferrer" : undefined}
-                  className={`group flex items-center gap-3.5 p-3.5 sm:p-4 rounded-xl sm:rounded-2xl border ${action.borderClass} bg-white hover:bg-[#FAF7F2] transition-all duration-300 hover:-translate-y-1 hover:shadow-md`}
+                  className={`group flex items-center gap-3.5 p-4 rounded-2xl border ${action.borderClass} bg-white hover:bg-[#FAF7F2] transition-all duration-300 hover:-translate-y-1 hover:shadow-md`}
                 >
-                  <div className={`w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110 ${action.bgClass} ${action.colorClass}`}>
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110 ${action.bgClass} ${action.colorClass}`}>
                     {action.customIcon ? action.customIcon : (Icon && <Icon size={22} />)}
                   </div>
                   <div className="flex flex-col min-w-0">
-                    <span className="text-xs sm:text-sm font-bold text-[#121113] truncate group-hover:text-[#A87B75] transition-colors">
+                    <span className="text-sm font-bold text-[#121113] truncate group-hover:text-[#A87B75] transition-colors">
                       {action.label}
                     </span>
                     <span className="text-[11px] text-[#7A757F] truncate font-medium">

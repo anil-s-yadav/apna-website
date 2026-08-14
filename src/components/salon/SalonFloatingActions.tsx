@@ -30,13 +30,13 @@ export const SalonFloatingActions: React.FC = () => {
           href={SALON_BUSINESS.whatsappLink} 
           target="_blank" 
           rel="noopener noreferrer"
-          className="salon-mobile-bar-item text-[#128C7E]"
+          className="salon-mobile-bar-item text-[#25D366]"
         >
-          <WhatsAppIcon size={18} fill="#128C7E" />
+          <WhatsAppIcon size={19} fill="#25D366" />
           <span>WhatsApp</span>
         </a>
         <a 
-          href="#appointment" 
+          href="/salon/book" 
           className="salon-mobile-bar-item"
         >
           <Calendar size={17} />

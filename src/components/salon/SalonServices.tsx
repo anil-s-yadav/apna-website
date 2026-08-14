@@ -27,9 +27,9 @@ const serviceMeta: Record<string, { duration: string; badge?: string; tag: strin
   "Haircut & Styling": { duration: "45 Mins", badge: "MOST POPULAR", tag: "Stylist Blowout Included" },
   "Hair Spa": { duration: "60 Mins", badge: "TOP RATED", tag: "Deep Conditioning" },
   "Hair Colour": { duration: "90 Mins", badge: "TRENDING", tag: "L'Oréal Professionnel" },
-  "Keratin Treatment": { duration: "120 Mins", badge: "LUXURY RITUAL", tag: "Frizz-Free 12 Weeks" },
+  "Keratin Treatment": { duration: "120 Mins", badge: "LUXURY SERVICE", tag: "Frizz-Free 12 Weeks" },
   "Cleanup": { duration: "40 Mins", tag: "Deep Pore Purifying" },
-  "Facial": { duration: "60 Mins", badge: "GLOW ESSENTIAL", tag: "O3+ Radiance Ritual" },
+  "Facial": { duration: "60 Mins", badge: "GLOW ESSENTIAL", tag: "O3+ Radiance Service" },
   "Threading": { duration: "15 Mins", tag: "Precision Brow Shape" },
   "Detan": { duration: "30 Mins", tag: "Sun Tan Removal" },
   "Relaxation Massage": { duration: "60 Mins", badge: "MOST RELAXING", tag: "Aromatherapy Oils" },
@@ -38,7 +38,7 @@ const serviceMeta: Record<string, { duration: string; badge?: string; tag: strin
 };
 
 const categoryIcons = [
-  { icon: Scissors, label: "Hair Rituals" },
+  { icon: Scissors, label: "Hair Services" },
   { icon: Sparkles, label: "Skin & Beauty" },
   { icon: Heart, label: "Spa & Body" }
 ];
@@ -48,10 +48,7 @@ const SalonServices = () => {
   const activeCategory = SALON_SERVICES[activeCategoryIdx];
 
   const handleBookClick = (serviceName: string) => {
-    const el = document.getElementById('appointment');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
+    window.location.href = '/salon/book';
   };
 
   return (
@@ -69,7 +66,7 @@ const SalonServices = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="salon-section-label">CURATED BEAUTY RITUALS</div>
+            <div className="salon-section-label">CURATED BEAUTY SERVICES</div>
             <h2 className="salon-section-title">
               Our Most-Loved <span className="italic font-normal text-[#A87B75]">Services.</span>
             </h2>
@@ -125,7 +122,7 @@ const SalonServices = () => {
             {activeCategory.services.map((service, idx) => {
               const imagesForCategory = UNSPLASH_IMAGES[activeCategory.category as keyof typeof UNSPLASH_IMAGES] || [];
               const imageUrl = imagesForCategory[idx % imagesForCategory.length] || service.image;
-              const meta = serviceMeta[service.name] || { duration: "45 Mins", tag: "Express Ritual" };
+              const meta = serviceMeta[service.name] || { duration: "45 Mins", tag: "Express Service" };
 
               return (
                 <div 
@@ -210,7 +207,7 @@ const SalonServices = () => {
             </div>
           </div>
 
-          <a href="#appointment" className="salon-btn-gold py-3 px-7 text-xs shrink-0 shadow-md">
+          <a href="/salon/book" className="salon-btn-gold py-3 px-7 text-xs shrink-0 shadow-md">
             <Calendar size={16} /> Reserve Your Appointment
           </a>
         </motion.div>

@@ -58,7 +58,7 @@ export const SalonFooter: React.FC = () => {
 
           {/* Services Column */}
           <div>
-            <h4 className="text-xs uppercase tracking-widest text-[#D4AF37] font-bold mb-6">Signature Rituals</h4>
+            <h4 className="text-xs uppercase tracking-widest text-[#D4AF37] font-bold mb-6">Signature Services</h4>
             <ul className="space-y-3 text-xs sm:text-sm text-white/70">
               <li>Haircut & Precision Styling</li>
               <li>Organic Hair Spa Treatments</li>

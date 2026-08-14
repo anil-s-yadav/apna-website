@@ -15,7 +15,7 @@ export const SALON_BUSINESS = {
   address: "Blush & Bloom Salon & Spa",
   addressLine2: "Andheri West, Mumbai, Maharashtra",
   fullAddress: "Near Infinity Mall, Andheri West, Mumbai, Maharashtra 400053",
-  mapUrl: "https://maps.google.com/?q=Andheri+West+Mumbai",
+  mapUrl: "https://www.google.com/maps/dir/?api=1&destination=Andheri+West+Mumbai",
   instagram: "https://instagram.com/blushandbloom",
   facebook: "https://facebook.com/blushandbloom",
   whatsappLink: "https://wa.me/919000012345?text=Hi%20Blush%20%26%20Bloom!%20I%27d%20like%20to%20book%20an%20appointment.",
@@ -176,7 +176,7 @@ export const SALON_PACKAGES: SalonPackage[] = [
     badge: "BESTSELLER",
     servicesIncluded: [
       "Global Hair Colour or Balayage",
-      "Deep L'Oréal Hair Spa Ritual",
+      "Deep L'Oréal Hair Spa Service",
       "Stylist Cut & Finish Blowout",
       "Complimentary Hair Serum Kit"
     ]

@@ -284,10 +284,7 @@ body.salon-menu-open .salon-mobile-bar {
 /* ── Mobile Sticky Bottom Dock Bar ─────────────────────── */
 @media (max-width: 768px) {
   .salon-floating-whatsapp {
-    bottom: 5.25rem;
-    right: 1rem;
-    width: 50px;
-    height: 50px;
+    display: none !important;
   }
 }
 

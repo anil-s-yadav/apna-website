@@ -81,8 +81,7 @@ const SalonHeader = () => {
             </a>
           ))}
           <a
-            href="#appointment"
-            onClick={(e) => handleSmoothScroll(e, '#appointment')}
+            href="/salon/book"
             className={`inline-flex items-center gap-2 py-2.5 px-6 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 ${
               scrolled
                 ? 'bg-[#121113] text-white hover:bg-[#1E1C20] shadow-md'
@@ -147,8 +146,8 @@ const SalonHeader = () => {
               <WhatsAppIcon size={18} fill="#FFFFFF" /> WhatsApp Instant Chat
             </a>
             <a
-              href="#appointment"
-              onClick={(e) => handleSmoothScroll(e, '#appointment')}
+              href="/salon/book"
+              onClick={() => setMobileMenuOpen(false)}
               className="salon-btn-gold w-full py-4 justify-center text-sm shadow-xl"
             >
               <Calendar size={18} /> Book Appointment Now
