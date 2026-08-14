@@ -377,13 +377,23 @@ export default function SalonAppointment({ isStandalonePage = false }: SalonAppo
                 </div>
 
                 <div className="flex justify-between items-center p-3.5 rounded-2xl bg-[#FAF7F2]">
-                  <span className="text-[#7A757F] font-medium">Starting Price:</span>
+                  <span className="text-[#7A757F] font-medium">Price:</span>
                   <div className="text-right">
                     {isPromoApplied ? (
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-1.5 flex-wrap justify-end">
                         <span className="text-xs text-[#7A757F] line-through font-normal">{selectedPrice}</span>
-                        <span className="font-bold text-[#25D366] text-sm sm:text-base">
-                          15% OFF Applied
+                        <span className="font-extrabold text-[#25D366] text-sm sm:text-base">
+                          {(() => {
+                            const match = selectedPrice.match(/[\d,]+/);
+                            if (!match) return selectedPrice;
+                            const num = parseInt(match[0].replace(/,/g, ''), 10);
+                            if (isNaN(num)) return selectedPrice;
+                            const discounted = Math.round(num * 0.85);
+                            return `₹${discounted.toLocaleString('en-IN')}`;
+                          })()}
+                        </span>
+                        <span className="text-xs text-[#128C7E] font-medium">
+                          (15% OFF applied)
                         </span>
                       </div>
                     ) : (
