@@ -1,8 +1,16 @@
 import { motion } from 'framer-motion';
-import { Sparkles, Gift, ArrowRight, ShieldCheck } from 'lucide-react';
-import { SALON_BUSINESS } from '@/data/salonData';
+import { Gift, ArrowRight, ShieldCheck } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const SalonPromo = () => {
+  const navigate = useNavigate();
+
+  const handleClaimOffer = (e: React.MouseEvent) => {
+    e.preventDefault();
+    sessionStorage.setItem('salon_promo_applied', 'WELCOME15');
+    navigate('/salon/book?promo=WELCOME15');
+  };
+
   return (
     <section className="relative w-full bg-[#121113] overflow-hidden py-16 sm:py-20 border-y border-[#D4AF37]/20">
       {/* Background Ambient Glows & Rays */}
@@ -59,14 +67,12 @@ const SalonPromo = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="flex-shrink-0"
             >
-              <a 
-                href={SALON_BUSINESS.whatsappLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="salon-btn-gold px-9 py-4 text-base shadow-2xl flex items-center justify-center gap-2 group"
+              <button 
+                onClick={handleClaimOffer}
+                className="salon-btn-gold px-9 py-4 text-base shadow-2xl flex items-center justify-center gap-2 group cursor-pointer"
               >
                 Claim 15% Welcome Offer <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-              </a>
+              </button>
             </motion.div>
           </div>
         </div>

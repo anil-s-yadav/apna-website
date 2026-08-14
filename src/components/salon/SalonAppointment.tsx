@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar as CalendarIcon, CheckCircle, Clock, ShieldCheck, Sparkles, Check, ChevronDown, User, Phone, MapPin } from 'lucide-react';
+import { Calendar as CalendarIcon, CheckCircle, Clock, ShieldCheck, Sparkles, Check, ChevronDown, User, Phone, MapPin, Tag } from 'lucide-react';
 import { SALON_BUSINESS, SALON_SERVICES } from '@/data/salonData';
 import WhatsAppIcon from '@/components/salon/WhatsAppIcon';
 
@@ -19,6 +19,22 @@ export default function SalonAppointment({ isStandalonePage = false }: SalonAppo
   const [date, setDate] = useState("");
   const [dateShortcut, setDateShortcut] = useState("Today");
   const [timeSlot, setTimeSlot] = useState("Afternoon (1 PM - 5 PM)");
+  const [isPromoApplied, setIsPromoApplied] = useState(false);
+
+  useEffect(() => {
+    // FOR TESTING / DEMO: Always show 15% Welcome Offer Applied banner in all cases.
+    // Uncomment the conditional URL check below when ready:
+    /*
+    const searchParams = new URLSearchParams(window.location.search);
+    const promo = searchParams.get('promo');
+    if (promo === 'WELCOME15') {
+      setIsPromoApplied(true);
+    } else {
+      setIsPromoApplied(false);
+    }
+    */
+    setIsPromoApplied(true);
+  }, []);
 
   const currentCategory = SALON_SERVICES[selectedCategoryIdx];
 
@@ -74,43 +90,75 @@ export default function SalonAppointment({ isStandalonePage = false }: SalonAppo
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        {/* 15% Welcome Discount Banner */}
+        {isPromoApplied && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="max-w-4xl mx-auto mb-6 p-4 sm:p-4.5 rounded-2xl bg-gradient-to-r from-[#25D366]/15 via-white to-[#D4AF37]/15 border border-[#25D366]/40 flex flex-wrap items-center justify-between gap-3 text-xs sm:text-sm shadow-md"
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-full bg-[#25D366] text-white flex items-center justify-center font-bold text-sm shrink-0 shadow-sm">
+                ✓
+              </div>
+              <div>
+                <div className="font-extrabold text-[#121113] flex items-center gap-1.5">
+                  <span>🎉 15% Welcome Offer Applied!</span>
+                </div>
+                <div className="text-xs text-[#7A757F] font-light">Flat 15% discount will be automatically applied to your final bill.</div>
+              </div>
+            </div>
+
+            <span className="px-3.5 py-1.5 rounded-full bg-[#121113] text-[#D4AF37] text-[11px] font-black tracking-widest border border-[#D4AF37]/40 shadow-sm flex items-center gap-1.5">
+              <Tag size={12} className="text-[#D4AF37]" /> WELCOME15 APPLIED
+            </span>
+          </motion.div>
+        )}
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
 
           {/* Left Column: Form & Visual Service Picker (7 cols) */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="lg:col-span-7 bg-white p-6 sm:p-9 rounded-3xl border border-[#E8E1D7] shadow-xl"
-          >
+          <div className="lg:col-span-7">
             {isSubmitted ? (
-              <motion.div
-                className="py-10 text-center relative overflow-hidden"
+              <motion.div 
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
+                className="p-8 sm:p-12 rounded-3xl bg-white border border-[#D4AF37]/40 shadow-xl text-center"
               >
-                <div className="w-20 h-20 rounded-full bg-[#FAF6F0] border border-[#D4AF37]/40 text-[#D4AF37] flex items-center justify-center mx-auto mb-6 shadow-inner">
-                  <CheckCircle className="w-10 h-10" />
+                <div className="w-16 h-16 rounded-full bg-[#25D366]/15 text-[#128C7E] flex items-center justify-center mx-auto mb-4 border border-[#25D366]/30">
+                  <CheckCircle size={32} />
                 </div>
-                <h3 className="salon-serif text-3xl font-semibold mb-3 text-[#121113]">Reservation Confirmed!</h3>
-                <p className="text-[#7A757F] text-base max-w-md mx-auto mb-6 font-light">
-                  Thank you, <strong className="text-[#121113]">{name || "Valued Client"}</strong>! We have received your booking for <strong className="text-[#A87B75]">{selectedService}</strong> ({selectedPrice}).
+                <h3 className="salon-serif text-3xl font-bold text-[#121113] mb-2">Appointment Requested!</h3>
+                <p className="text-sm text-[#7A757F] max-w-md mx-auto mb-6 leading-relaxed font-light">
+                  Thank you, <strong className="text-[#121113]">{name}</strong>! We have received your booking request for <strong className="text-[#121113]">{selectedService}</strong> on <strong className="text-[#121113]">{dateShortcut || date || 'Selected Date'}</strong> ({timeSlot}).
                 </p>
 
-                <div className="p-4 rounded-2xl bg-[#FAF7F2] border border-[#E8E1D7] text-xs text-[#7A757F] max-w-sm mx-auto mb-6 space-y-1">
-                  <div>📍 Branch: Blush & Bloom, Andheri West</div>
-                  <div>📅 Date: {dateShortcut || date || "Today"} • {timeSlot}</div>
-                  <div>📞 Concierge Confirmation Call: Within 15 Mins</div>
+                {isPromoApplied && (
+                  <div className="mb-6 p-3.5 rounded-xl bg-[#25D366]/10 border border-[#25D366]/30 text-xs font-bold text-[#128C7E] inline-flex items-center gap-1.5">
+                    <Tag size={14} /> 15% Welcome Discount Code WELCOME15 Attached
+                  </div>
+                )}
+
+                <div className="p-4 rounded-2xl bg-[#FAF7F2] border border-[#E8E1D7] max-w-md mx-auto text-xs text-[#7A757F] mb-8 font-medium">
+                  📱 Our front desk team will call or WhatsApp you at <span className="text-[#121113] font-bold">{phone}</span> within 15 minutes to confirm your chair time.
                 </div>
 
-                <button
-                  onClick={() => setIsSubmitted(false)}
-                  className="salon-btn-secondary py-2.5 px-6 text-xs"
-                >
-                  Book Another Appointment
-                </button>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                  <button 
+                    onClick={() => setIsSubmitted(false)}
+                    className="salon-btn-gold py-3 px-6 text-xs shadow-md w-full sm:w-auto"
+                  >
+                    Book Another Appointment
+                  </button>
+                  <a 
+                    href={SALON_BUSINESS.whatsappLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-6 py-3 rounded-full bg-[#25D366] text-white font-bold text-xs flex items-center justify-center gap-2 hover:bg-[#128C7E] transition-all shadow-md w-full sm:w-auto"
+                  >
+                    <WhatsAppIcon size={16} fill="#FFFFFF" /> Confirm via WhatsApp
+                  </a>
+                </div>
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-7">
@@ -126,7 +174,7 @@ export default function SalonAppointment({ isStandalonePage = false }: SalonAppo
                   </h3>
 
                   {/* Category Pills */}
-                  <div className="flex gap-2 mb-3 salon-mobile-scroll pb-1">
+                  <div className="flex gap-2 mb-4 salon-mobile-scroll pb-1">
                     {SALON_SERVICES.map((cat, idx) => (
                       <button
                         key={cat.category}
@@ -136,36 +184,38 @@ export default function SalonAppointment({ isStandalonePage = false }: SalonAppo
                           setSelectedService(cat.services[0].name);
                           setSelectedPrice(cat.services[0].price);
                         }}
-                        className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${idx === selectedCategoryIdx
-                          ? 'bg-[#121113] text-white shadow-md'
-                          : 'bg-[#FAF7F2] border border-[#E8E1D7] text-[#7A757F] hover:text-[#121113]'
-                          }`}
+                        className={`px-4 py-2 rounded-full text-xs font-bold transition-all shrink-0 ${
+                          selectedCategoryIdx === idx
+                            ? 'bg-[#121113] text-white shadow-md'
+                            : 'bg-[#FAF7F2] text-[#7A757F] border border-[#E8E1D7] hover:border-[#D4AF37]/40'
+                        }`}
                       >
                         {cat.category}
                       </button>
                     ))}
                   </div>
 
-                  {/* Service Choice Cards (Grid of visual chips) */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                    {currentCategory.services.map((s) => {
-                      const isSelected = selectedService === s.name;
+                  {/* Service Cards Grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {currentCategory.services.map((serv) => {
+                      const isSelected = selectedService === serv.name;
                       return (
                         <div
-                          key={s.name}
-                          onClick={() => handleSelectService(s.name, s.price)}
-                          className={`p-3.5 rounded-2xl border cursor-pointer transition-all flex items-center justify-between ${isSelected
-                            ? 'bg-[#FAF7F2] border-[#D4AF37] ring-2 ring-[#D4AF37]/30 shadow-sm'
-                            : 'bg-white border-[#E8E1D7] hover:border-[#C89B95]/40 hover:bg-[#FAF7F2]/50'
-                            }`}
+                          key={serv.name}
+                          onClick={() => handleSelectService(serv.name, serv.price)}
+                          className={`p-3.5 rounded-2xl border cursor-pointer transition-all duration-200 flex items-center justify-between ${
+                            isSelected
+                              ? 'bg-[#FAF6F0] border-[#D4AF37] ring-2 ring-[#D4AF37]/20 shadow-sm'
+                              : 'bg-white border-[#E8E1D7] hover:border-[#D4AF37]/30 hover:bg-[#FAF7F2]/50'
+                          }`}
                         >
-                          <div className="min-w-0 pr-2">
-                            <div className="font-bold text-xs sm:text-sm text-[#121113] truncate">{s.name}</div>
-                            <div className="text-[11px] font-semibold text-[#A87B75]">{s.price}</div>
+                          <div>
+                            <div className="font-bold text-xs sm:text-sm text-[#121113]">{serv.name}</div>
+                            <div className="text-[11px] text-[#A87B75] font-semibold mt-0.5">{serv.price}</div>
                           </div>
-
-                          <div className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 ${isSelected ? 'bg-[#D4AF37] text-white' : 'border border-[#E8E1D7]'
-                            }`}>
+                          <div className={`w-5 h-5 rounded-full border flex items-center justify-center transition-colors ${
+                            isSelected ? 'bg-[#D4AF37] border-[#D4AF37] text-white' : 'border-[#E8E1D7] bg-white'
+                          }`}>
                             {isSelected && <Check size={12} />}
                           </div>
                         </div>
@@ -174,153 +224,143 @@ export default function SalonAppointment({ isStandalonePage = false }: SalonAppo
                   </div>
                 </div>
 
-                {/* STEP 2: TIME SLOT SELECTOR */}
-                <div>
-                  <label className="block text-xs font-extrabold uppercase tracking-wider text-[#121113] mb-2.5 flex items-center gap-1.5">
-                    <span className="w-5 h-5 rounded-full bg-[#121113] text-white flex items-center justify-center text-[10px]">2</span>
-                    Select Preferred Time Slot *
-                  </label>
+                {/* STEP 2: PREFERRED TIME SLOT */}
+                <div className="p-5 sm:p-7 rounded-3xl bg-white border border-[#E8E1D7] shadow-sm hover:shadow-md transition-all">
+                  <h3 className="font-bold text-sm sm:text-base text-[#121113] mb-4 flex items-center justify-between">
+                    <span className="flex items-center gap-2">
+                      <span className="w-6 h-6 rounded-full bg-[#121113] text-white text-xs flex items-center justify-center font-bold">2</span>
+                      Select Preferred Time Slot *
+                    </span>
+                  </h3>
 
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
                     {timeSlots.map((slot) => {
-                      const isSelected = timeSlot.includes(slot.label);
+                      const slotText = `${slot.label} (${slot.hours})`;
+                      const isSelected = timeSlot === slotText;
                       return (
                         <button
                           key={slot.label}
                           type="button"
-                          onClick={() => setTimeSlot(`${slot.label} (${slot.hours})`)}
-                          className={`p-3 rounded-2xl border text-center transition-all ${isSelected
-                            ? 'bg-[#121113] text-white border-[#121113] shadow-md'
-                            : 'bg-white border-[#E8E1D7] text-[#121113] hover:border-[#121113]'
-                            }`}
+                          onClick={() => setTimeSlot(slotText)}
+                          className={`p-3 rounded-2xl border text-center transition-all ${
+                            isSelected
+                              ? 'bg-[#121113] text-white border-[#121113] shadow-md ring-2 ring-[#121113]/20'
+                              : 'bg-[#FAF7F2] text-[#121113] border-[#E8E1D7] hover:border-[#D4AF37]/40'
+                          }`}
                         >
-                          <div className="text-sm font-bold flex items-center justify-center gap-1">
-                            <span>{slot.icon}</span> {slot.label}
-                          </div>
-                          <div className={`text-[10px] mt-0.5 ${isSelected ? 'text-white/70' : 'text-[#7A757F]'}`}>
-                            {slot.hours}
-                          </div>
+                          <div className="text-base mb-1">{slot.icon}</div>
+                          <div className="font-bold text-xs">{slot.label}</div>
+                          <div className={`text-[10px] ${isSelected ? 'text-white/80' : 'text-[#7A757F]'}`}>{slot.hours}</div>
                         </button>
                       );
                     })}
                   </div>
                 </div>
 
-                {/* STEP 3: PREFERRED DATE WITH TOUCH SHORTCUT PILLS */}
-                <div>
-                  <label className="block text-xs font-extrabold uppercase tracking-wider text-[#121113] mb-2.5 flex items-center gap-1.5">
-                    <span className="w-5 h-5 rounded-full bg-[#121113] text-white flex items-center justify-center text-[10px]">3</span>
-                    Select Preferred Date *
-                  </label>
+                {/* STEP 3: PREFERRED DATE */}
+                <div className="p-5 sm:p-7 rounded-3xl bg-white border border-[#E8E1D7] shadow-sm hover:shadow-md transition-all">
+                  <h3 className="font-bold text-sm sm:text-base text-[#121113] mb-4 flex items-center justify-between">
+                    <span className="flex items-center gap-2">
+                      <span className="w-6 h-6 rounded-full bg-[#121113] text-white text-xs flex items-center justify-center font-bold">3</span>
+                      Select Preferred Date *
+                    </span>
+                  </h3>
 
-                  {/* 1-Tap Date Shortcut Pills */}
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-3">
-                    {dateShortcuts.map((ds) => {
-                      const isSelected = dateShortcut === ds.label || date === ds.value;
+                  {/* 1-Tap Quick Shortcut Pills */}
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-4">
+                    {dateShortcuts.map((sc) => {
+                      const isSelected = dateShortcut === sc.label;
                       return (
                         <button
-                          key={ds.label}
+                          key={sc.label}
                           type="button"
                           onClick={() => {
-                            setDateShortcut(ds.label);
-                            setDate(ds.value);
+                            setDateShortcut(sc.label);
+                            setDate(sc.value);
                           }}
-                          className={`p-2.5 rounded-xl border text-center transition-all ${isSelected
-                            ? 'bg-[#A87B75] text-white border-[#A87B75] font-bold shadow-sm'
-                            : 'bg-[#FAF7F2] border-[#E8E1D7] text-[#121113] hover:border-[#A87B75]'
-                            }`}
+                          className={`p-2.5 rounded-2xl border text-center transition-all ${
+                            isSelected
+                              ? 'bg-[#A87B75] text-white border-[#A87B75] shadow-md'
+                              : 'bg-[#FAF7F2] text-[#121113] border-[#E8E1D7] hover:border-[#A87B75]/40'
+                          }`}
                         >
-                          <div className="text-xs font-bold">{ds.label}</div>
-                          <div className={`text-[10px] ${isSelected ? 'text-white/80' : 'text-[#7A757F]'}`}>{ds.sub}</div>
+                          <div className="font-bold text-xs">{sc.label}</div>
+                          <div className={`text-[10px] ${isSelected ? 'text-white/80' : 'text-[#7A757F]'}`}>{sc.sub}</div>
                         </button>
                       );
                     })}
                   </div>
 
-                  {/* Custom Date Input Picker with Calendar Icon & Label */}
                   <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#A87B75]">
-                      <CalendarIcon size={18} />
-                    </div>
                     <input
                       type="date"
-                      required
                       value={date}
                       onChange={(e) => {
                         setDate(e.target.value);
-                        setDateShortcut("Custom Date");
+                        setDateShortcut("");
                       }}
-                      className="salon-input bg-white cursor-pointer pl-11 text-xs sm:text-sm font-semibold"
+                      min={getFormattedDate(0)}
+                      className="w-full px-4 py-3 rounded-2xl border border-[#E8E1D7] bg-[#FAF7F2] text-xs font-semibold text-[#121113] outline-none focus:border-[#D4AF37] transition-all"
                     />
+                    <div className="text-[10px] text-[#7A757F] mt-1.5 pl-1 font-light">
+                      💡 Choose any date within the next 30 days.
+                    </div>
                   </div>
-                  <p className="text-[11px] text-[#7A757F] mt-1.5 flex items-center gap-1 font-light">
-                    💡 Tap "Today", "Tomorrow" or choose a custom date above.
-                  </p>
                 </div>
 
-                {/* STEP 4: CLIENT DETAILS */}
-                <div>
-                  <label className="block text-xs font-extrabold uppercase tracking-wider text-[#121113] mb-2.5 flex items-center gap-1.5">
-                    <span className="w-5 h-5 rounded-full bg-[#121113] text-white flex items-center justify-center text-[10px]">4</span>
-                    Your Contact Details *
-                  </label>
+                {/* STEP 4: CLIENT CONTACT DETAILS */}
+                <div className="p-5 sm:p-7 rounded-3xl bg-white border border-[#E8E1D7] shadow-sm hover:shadow-md transition-all">
+                  <h3 className="font-bold text-sm sm:text-base text-[#121113] mb-4 flex items-center justify-between">
+                    <span className="flex items-center gap-2">
+                      <span className="w-6 h-6 rounded-full bg-[#121113] text-white text-xs flex items-center justify-center font-bold">4</span>
+                      Your Contact Info *
+                    </span>
+                  </h3>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
+                      <label className="block text-xs font-bold text-[#121113] mb-1">Your Full Name *</label>
                       <input
                         type="text"
                         required
+                        placeholder="e.g. Ananya Sharma"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        placeholder="Full Name *"
-                        className="salon-input"
+                        className="w-full px-4 py-3 rounded-2xl border border-[#E8E1D7] bg-[#FAF7F2] text-xs text-[#121113] outline-none focus:border-[#D4AF37] transition-all"
                       />
                     </div>
+
                     <div>
+                      <label className="block text-xs font-bold text-[#121113] mb-1">Phone Number (WhatsApp) *</label>
                       <input
                         type="tel"
                         required
+                        placeholder="+91 98765 43210"
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
-                        placeholder="Mobile Number *"
-                        className="salon-input"
+                        className="w-full px-4 py-3 rounded-2xl border border-[#E8E1D7] bg-[#FAF7F2] text-xs text-[#121113] outline-none focus:border-[#D4AF37] transition-all"
                       />
                     </div>
                   </div>
                 </div>
 
-                {/* Submit Action */}
-                <button type="submit" className="salon-btn-gold w-full py-4 text-base shadow-xl mt-4">
-                  <CalendarIcon size={19} />
-                  Confirm Your Reservation
+                {/* SUBMIT BUTTON */}
+                <button
+                  type="submit"
+                  className="salon-btn-gold w-full py-4 text-sm font-bold shadow-2xl flex items-center justify-center gap-2 group active:scale-98"
+                >
+                  <CalendarIcon size={18} className="transition-transform group-hover:scale-110" />
+                  Confirm & Request Reservation
                 </button>
 
-                <div className="text-center pt-2">
-                  <p className="text-xs text-[#7A757F] mb-2 font-light">Prefer WhatsApp direct booking?</p>
-                  <a
-                    href={SALON_BUSINESS.whatsappLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#25D366] hover:bg-[#128C7E] text-white rounded-full font-bold text-xs transition-all shadow-md w-full sm:w-auto"
-                  >
-                    <WhatsAppIcon size={18} fill="#FFFFFF" />
-                    Book via WhatsApp Concierge
-                  </a>
-                </div>
               </form>
             )}
-          </motion.div>
+          </div>
 
-          {/* Right Column: Live Booking Ticket Summary (5 cols) */}
-          <motion.div
-            className="lg:col-span-5 relative"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-          >
-            <div className="bg-white p-7 sm:p-8 rounded-3xl border border-[#E8E1D7] shadow-xl relative overflow-hidden">
-              <div className="flex items-center justify-between pb-5 border-b border-[#E8E1D7] mb-6">
+          {/* Right Column: Live Booking Summary Card Ticket (5 cols) */}
+          <div className="lg:col-span-5 sticky top-24 mt-8 lg:mt-0">
+            <div className="p-6 sm:p-7 rounded-3xl bg-white border border-[#D4AF37]/40 shadow-xl relative overflow-hidden">
+              <div className="flex items-center justify-between mb-6 pb-4 border-b border-[#E8E1D7]">
                 <div>
                   <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#D4AF37]">LIVE BOOKING PREVIEW</span>
                   <h4 className="salon-serif text-2xl font-bold text-[#121113] mt-0.5">Your Sanctuary Ticket</h4>
@@ -338,7 +378,18 @@ export default function SalonAppointment({ isStandalonePage = false }: SalonAppo
 
                 <div className="flex justify-between items-center p-3.5 rounded-2xl bg-[#FAF7F2]">
                   <span className="text-[#7A757F] font-medium">Starting Price:</span>
-                  <span className="font-bold text-[#A87B75] text-base">{selectedPrice}</span>
+                  <div className="text-right">
+                    {isPromoApplied ? (
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs text-[#7A757F] line-through font-normal">{selectedPrice}</span>
+                        <span className="font-bold text-[#25D366] text-sm sm:text-base">
+                          15% OFF Applied
+                        </span>
+                      </div>
+                    ) : (
+                      <span className="font-bold text-[#A87B75] text-base">{selectedPrice}</span>
+                    )}
+                  </div>
                 </div>
 
                 <div className="flex justify-between items-center p-3.5 rounded-2xl bg-[#FAF7F2]">
@@ -362,7 +413,7 @@ export default function SalonAppointment({ isStandalonePage = false }: SalonAppo
                 <div className="text-[11px] text-[#7A757F]">Your chair will be ready immediately upon arrival.</div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
         </div>
       </div>

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Gift, Sparkles, ArrowRight, ShieldCheck } from 'lucide-react';
-import { SALON_BUSINESS } from '@/data/salonData';
+import { X, Gift, ArrowRight, ShieldCheck } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export const SalonWelcomeDialog: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Open dialog after a brief 1.2 second delay on initial land
@@ -20,6 +21,14 @@ export const SalonWelcomeDialog: React.FC = () => {
   const handleClose = () => {
     setIsOpen(false);
     sessionStorage.setItem('salon_welcome_seen', 'true');
+  };
+
+  const handleClaimOffer = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsOpen(false);
+    sessionStorage.setItem('salon_welcome_seen', 'true');
+    sessionStorage.setItem('salon_promo_applied', 'WELCOME15');
+    navigate('/salon/book?promo=WELCOME15');
   };
 
   return (
@@ -94,15 +103,12 @@ export const SalonWelcomeDialog: React.FC = () => {
 
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row items-center gap-3 w-full">
-                <a
-                  href={SALON_BUSINESS.whatsappLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={handleClose}
-                  className="salon-btn-gold py-3.5 px-6 w-full text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-2xl group"
+                <button
+                  onClick={handleClaimOffer}
+                  className="salon-btn-gold py-3.5 px-6 w-full text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-2xl group cursor-pointer"
                 >
                   Claim 15% Welcome Offer <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-                </a>
+                </button>
                 <button
                   onClick={handleClose}
                   className="py-3 px-4 w-full text-xs text-white/60 hover:text-white transition-colors"

@@ -1,3 +1,5 @@
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import '@/components/salon/salon.css';
 
 import SalonHeader from '@/components/salon/SalonHeader';
@@ -7,7 +9,6 @@ import SalonAbout from '@/components/salon/SalonAbout';
 import SalonServices from '@/components/salon/SalonServices';
 import SalonPromo from '@/components/salon/SalonPromo';
 import SalonGallery from '@/components/salon/SalonGallery';
-import SalonAppointment from '@/components/salon/SalonAppointment';
 import SalonWhyChoose from '@/components/salon/SalonWhyChoose';
 import { SalonTestimonials } from '@/components/salon/SalonTestimonials';
 import { SalonSocialProof } from '@/components/salon/SalonSocialProof';
@@ -18,7 +19,22 @@ import { SalonFooter } from '@/components/salon/SalonFooter';
 import { SalonFloatingActions } from '@/components/salon/SalonFloatingActions';
 import SalonWelcomeDialog from '@/components/salon/SalonWelcomeDialog';
 
-const SalonDemo = () => {
+const SalonDemo: React.FC = () => {
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      const targetId = hash.replace('#', '');
+      const timer = setTimeout(() => {
+        const element = document.getElementById(targetId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 150);
+      return () => clearTimeout(timer);
+    }
+  }, [hash]);
+
   return (
     <div className="salon-page">
       <SalonWelcomeDialog />
