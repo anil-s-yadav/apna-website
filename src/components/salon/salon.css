@@ -1,0 +1,447 @@
+/* ═══════════════════════════════════════════════════════════
+   Blush & Bloom Salon & Spa — Luxury Mobile-First Design System
+   ═══════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+/* ── Salon Design Tokens ───────────────────────────────── */
+.salon-page {
+  --salon-ivory: #FAF7F2;
+  --salon-ivory-warm: #F4EFE6;
+  --salon-white: #FFFFFF;
+  --salon-charcoal: #121113;
+  --salon-charcoal-soft: #1E1C20;
+  --salon-text: #2D2B30;
+  --salon-text-muted: #7A757F;
+  --salon-blush: #C89B95;
+  --salon-blush-dark: #A87B75;
+  --salon-blush-light: #EADCD9;
+  --salon-blush-pale: #F8F3F2;
+  --salon-gold: #D4AF37;
+  --salon-gold-light: #F4E8C1;
+  --salon-gold-dark: #A38420;
+  --salon-border: #E8E1D7;
+  --salon-border-light: #F2ECDF;
+
+  /* Shadows */
+  --salon-shadow-sm: 0 2px 8px rgba(18, 17, 19, 0.03);
+  --salon-shadow-md: 0 8px 24px -4px rgba(18, 17, 19, 0.06);
+  --salon-shadow-lg: 0 20px 48px -8px rgba(18, 17, 19, 0.08);
+  --salon-shadow-xl: 0 30px 70px -12px rgba(18, 17, 19, 0.12);
+  --salon-shadow-glow: 0 10px 30px rgba(212, 175, 55, 0.2);
+  --salon-shadow-blush: 0 12px 36px rgba(200, 155, 149, 0.22);
+
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--salon-charcoal);
+  background-color: var(--salon-ivory);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  touch-action: manipulation;
+}
+
+/* Hide Floating WhatsApp and Mobile Bottom Dock when Mobile Menu is Open */
+body.salon-menu-open .salon-floating-whatsapp,
+body.salon-menu-open .salon-mobile-bar {
+  display: none !important;
+}
+
+/* ── Serif Headings ────────────────────────────────────── */
+.salon-page .salon-serif {
+  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  letter-spacing: -0.01em;
+}
+
+/* ── Section Spacing (Mobile Optimized) ────────────────── */
+.salon-section {
+  padding: 5rem 0;
+}
+
+@media (max-width: 768px) {
+  .salon-section {
+    padding: 3.25rem 0;
+  }
+}
+
+/* ── Container (Mobile Edge-to-Edge) ───────────────────── */
+.salon-container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@media (max-width: 640px) {
+  .salon-container {
+    padding: 0 1.125rem;
+  }
+}
+
+/* ── Glassmorphism & Micro-elevation Effects ────────────── */
+.salon-glass {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.salon-glass-dark {
+  background: rgba(18, 17, 19, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.salon-glass-card {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(232, 225, 215, 0.7);
+  box-shadow: 0 10px 30px -5px rgba(18, 17, 19, 0.04);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Glowing & Gradient Text ───────────────────────────── */
+.salon-gold-gradient-text {
+  background: linear-gradient(135deg, #F4E8C1 0%, #D4AF37 50%, #E6C875 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Touch-Friendly Button Styles ──────────────────────── */
+.salon-btn-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  padding: 0.9375rem 2.25rem;
+  min-height: 48px;
+  background-color: var(--salon-charcoal);
+  color: var(--salon-white);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  letter-spacing: 0.02em;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(18, 17, 19, 0.15);
+  white-space: nowrap;
+}
+
+.salon-btn-primary:active {
+  transform: scale(0.97);
+}
+
+.salon-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  padding: 0.9375rem 2.25rem;
+  min-height: 48px;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  color: var(--salon-charcoal);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  border-radius: 9999px;
+  border: 1.5px solid var(--salon-border);
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.salon-btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  padding: 0.9375rem 2.25rem;
+  min-height: 48px;
+  background: linear-gradient(135deg, #E6C875 0%, #D4AF37 50%, #A38420 100%);
+  color: #121113;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  letter-spacing: 0.03em;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--salon-shadow-glow);
+  white-space: nowrap;
+}
+
+.salon-btn-gold:active {
+  transform: scale(0.97);
+}
+
+/* ── Section Heading Styles (Mobile Scaled) ────────────── */
+.salon-section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.875rem;
+  background-color: var(--salon-blush-pale);
+  border: 1px solid rgba(200, 155, 149, 0.25);
+  border-radius: 9999px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--salon-blush-dark);
+  margin-bottom: 0.875rem;
+}
+
+.salon-section-title {
+  font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+  font-size: 2.875rem;
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--salon-charcoal);
+  margin-bottom: 1rem;
+}
+
+.salon-section-subtitle {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.0625rem;
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--salon-text-muted);
+  max-width: 580px;
+}
+
+@media (max-width: 768px) {
+  .salon-section-title {
+    font-size: 2rem;
+    line-height: 1.18;
+  }
+  .salon-section-subtitle {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+}
+
+/* ── Card Styles ───────────────────────────────────────── */
+.salon-card {
+  background-color: var(--salon-white);
+  border: 1px solid var(--salon-border-light);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Image Zoom Effect ─────────────────────────────────── */
+.salon-img-zoom {
+  overflow: hidden;
+  position: relative;
+}
+
+.salon-img-zoom img {
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.salon-img-zoom:hover img {
+  transform: scale(1.06);
+}
+
+/* ── Floating WhatsApp Button ──────────────────────────── */
+.salon-floating-whatsapp {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 40;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  animation: salon-pulse-float 3s ease-in-out infinite;
+}
+
+@keyframes salon-pulse-float {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-6px) scale(1.03);
+  }
+}
+
+/* ── Mobile Sticky Bottom Dock Bar ─────────────────────── */
+@media (max-width: 768px) {
+  .salon-floating-whatsapp {
+    bottom: 5.25rem;
+    right: 1rem;
+    width: 50px;
+    height: 50px;
+  }
+}
+
+.salon-mobile-bar {
+  position: fixed;
+  bottom: 0.875rem;
+  left: 0.875rem;
+  right: 0.875rem;
+  z-index: 40;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(232, 225, 215, 0.9);
+  border-radius: 9999px;
+  box-shadow: 0 15px 35px -5px rgba(18, 17, 19, 0.18);
+  display: none;
+  padding: 0.3rem;
+}
+
+@media (max-width: 768px) {
+  .salon-mobile-bar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+  }
+}
+
+.salon-mobile-bar-item {
+  display: flex;
+  flex-direction: flex-row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.65rem 0.25rem;
+  min-height: 44px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--salon-text);
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+}
+
+.salon-mobile-bar-item:nth-child(2) {
+  color: #128C7E;
+}
+
+.salon-mobile-bar-item:nth-child(3) {
+  background: var(--salon-charcoal);
+  color: var(--salon-white);
+  padding: 0.65rem 0.5rem;
+  box-shadow: 0 4px 14px rgba(18, 17, 19, 0.25);
+}
+
+/* ── Mobile Horizontal Pill Scroller ───────────────────── */
+.salon-mobile-scroll {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.salon-mobile-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Masonry Grid Customizations ───────────────────────── */
+.salon-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 230px;
+  gap: 1rem;
+}
+
+.salon-gallery-grid .gallery-item:nth-child(1) {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.salon-gallery-grid .gallery-item:nth-child(4) {
+  grid-row: span 2;
+}
+
+.salon-gallery-grid .gallery-item:nth-child(6) {
+  grid-column: span 2;
+}
+
+@media (max-width: 768px) {
+  .salon-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 160px;
+    gap: 0.625rem;
+  }
+
+  .salon-gallery-grid .gallery-item:nth-child(1) {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+  
+  .salon-gallery-grid .gallery-item:nth-child(4) {
+    grid-row: span 1;
+  }
+
+  .salon-gallery-grid .gallery-item:nth-child(6) {
+    grid-column: span 1;
+  }
+}
+
+/* ── Header Scroll Blur ────────────────────────────────── */
+.salon-header-scrolled {
+  background-color: rgba(250, 247, 242, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 4px 20px rgba(18, 17, 19, 0.05);
+  border-bottom: 1px solid rgba(232, 225, 215, 0.6);
+}
+
+/* ── Inputs ────────────────────────────────────────────── */
+.salon-input {
+  width: 100%;
+  padding: 0.875rem 1.125rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.9375rem;
+  color: var(--salon-charcoal);
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 1.5px solid var(--salon-border);
+  border-radius: 14px;
+  outline: none;
+  transition: all 0.25s ease;
+  min-height: 48px;
+}
+
+.salon-input:focus {
+  border-color: var(--salon-blush);
+  box-shadow: 0 0 0 4px rgba(200, 155, 149, 0.18);
+  background-color: #FFFFFF;
+}
+
+/* ── Dividers & Badges ─────────────────────────────────── */
+.salon-divider {
+  width: 56px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--salon-blush) 0%, var(--salon-gold) 100%);
+  border: none;
+  border-radius: 9999px;
+  margin: 1.25rem 0;
+}
+
+/* ── Padding for Mobile Dock ───────────────────────────── */
+@media (max-width: 768px) {
+  .salon-page {
+    padding-bottom: 4.5rem;
+  }
+}
